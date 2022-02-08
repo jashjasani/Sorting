@@ -9,7 +9,9 @@ int main(){
     int arr[]={7,3,4,5,2,9,6,8};
     int size=sizeof(arr)/sizeof(arr[0]);
     sort(arr,size);
+    printf("\n\nFully Sorted array : ");
     printArray(arr,size);
+    printf("\n\n");
 }
 
 void merge(int *A,int *L,int *R,int sizeOfLeft,int sizeOfRight){
@@ -24,6 +26,11 @@ void merge(int *A,int *L,int *R,int sizeOfLeft,int sizeOfRight){
 
     while(i<sizeOfLeft)A[k++]=L[i++];
     while(j<sizeOfRight) A[k++]=R[j++];
+
+    printArray(L,sizeOfLeft);
+    printArray(R,sizeOfRight);
+    printf("\nPartially sorted : ");
+    printArray(A,sizeOfLeft+sizeOfRight);
 }
 
 void sort(int *arr,int n){
@@ -34,6 +41,8 @@ void sort(int *arr,int n){
     int *L = (int*) malloc(sizeof(int)*mid);
     int *R = (int*) malloc(sizeof(int)*n-mid);
 
+
+
     for(int i=0;i<mid;i++) L[i]=arr[i];
     for(int j=0;j<n-mid;j++) R[j]=arr[j+mid];
 
@@ -41,6 +50,8 @@ void sort(int *arr,int n){
     sort(R,n-mid);
 
     merge(arr,L,R,mid,n-mid);
+    printf("\n");
+
 
     free(L);
     free(R);
